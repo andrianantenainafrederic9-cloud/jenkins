@@ -7,10 +7,10 @@ pipeline {
     }
 
     stages {
-
-        stage('Checkout') {
+        stage('Verification') {
             steps {
-                echo 'Recuperation du projet React'
+                sh 'node -v'
+                sh 'npm -v'
             }
         }
 
@@ -26,17 +26,16 @@ pipeline {
             }
         }
 
-        stage('Verification') {
+        stage('Verification du build') {
             steps {
                 sh 'ls -la dist'
-                echo 'Build React termine avec succes !'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline termine avec succes !'
+            echo 'Build React reussi !'
         }
 
         failure {
